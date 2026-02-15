@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
   "build_number": 2,
-  "url": "google.com",
-  "changelog": "Test Link Version"
+  "url": "https://github.com/nawaristudio/KedaiPOS/releases/download/Release/kedai_POS_v1_1_02.apk",
+  "changelog": "Update beberapa fungsi Reporting dan Pengaturan Printer"
 }

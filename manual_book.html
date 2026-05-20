@@ -1,192 +1,815 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual Book Kedai POS</title>
-
+    <title>Dokumentasi Penggunaan - Kedai POS</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            background: #f9fafb;
+        :root {
+            --zinc-50: #fafafa;
+            --zinc-100: #f4f4f5;
+            --zinc-200: #e4e4e7;
+            --zinc-300: #d4d4d8;
+            --zinc-400: #a1a1aa;
+            --zinc-500: #71717a;
+            --zinc-700: #3f3f46;
+            --zinc-800: #27272a;
+            --zinc-900: #18181b;
+            --primary: #059669;
+            --primary-light: #ecfdf5;
+            --primary-dark: #065f46;
+            --warning: #d97706;
+            --warning-light: #fffbeb;
+            --warning-border: #f59e0b;
+            --info: #2563eb;
+            --info-light: #eff6ff;
+            --info-border: #3b82f6;
+            --sidebar-width: 260px;
         }
 
-        /* SIDEBAR */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--zinc-700);
+            background-color: #ffffff;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
         .sidebar {
-            width: 160px;
-            background: #111827;
-            color: white;
+            width: var(--sidebar-width);
+            background-color: var(--zinc-50);
+            border-right: 1px solid var(--zinc-200);
             height: 100vh;
             position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
             overflow-y: auto;
-            padding: 20px;
+            z-index: 100;
         }
 
-        .sidebar h2 {
-            font-size: 18px;
-            margin-bottom: 20px;
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--zinc-200);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .sidebar a {
-            display: block;
-            color: #d1d5db;
+        .sidebar-logo {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--zinc-900);
+            letter-spacing: -0.02em;
+        }
+
+        .sidebar-nav {
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            color: var(--zinc-700);
             text-decoration: none;
-            padding: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
             border-radius: 6px;
-            margin-bottom: 5px;
-            font-size: 14px;
+            transition: background-color 0.15s, color 0.15s;
         }
 
-        .sidebar a:hover {
-            background: #374151;
-            color: #fff;
+        .sidebar-nav a:hover {
+            color: var(--zinc-900);
+            background-color: var(--zinc-100);
         }
 
-        /* CONTENT */
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            max-width: 900px;
+        .sidebar-nav a.active {
+            color: var(--primary-dark);
+            background-color: var(--primary-light);
+            font-weight: 600;
         }
 
-        header {
-            margin-bottom: 30px;
+        .sidebar-nav svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
         }
 
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 56px 80px;
+            max-width: 1080px;
+        }
+
+        .doc-container {
+            max-width: 720px;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--zinc-200);
+            padding: 16px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 101;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mobile-logo-area h2 {
+            font-size: 1.05rem;
+            color: var(--zinc-900);
+            font-weight: 700;
+        }
+
+        .mobile-toggle {
+            background: none;
+            border: none;
+            color: var(--zinc-700);
+            cursor: pointer;
+        }
+
+        .mobile-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Typography */
         h1 {
-            margin: 0;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--zinc-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.03em;
         }
 
-        .section {
-            margin-bottom: 40px;
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--zinc-500);
+            margin-bottom: 32px;
         }
 
-        .card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-top: 10px;
+        h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--zinc-900);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--zinc-200);
+            letter-spacing: -0.02em;
         }
 
-        .note {
-            background: #fef3c7;
-            padding: 10px;
-            border-left: 4px solid #f59e0b;
-            margin-top: 10px;
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--zinc-900);
+            margin-top: 28px;
+            margin-bottom: 12px;
         }
 
+        p {
+            margin-bottom: 16px;
+            font-size: 0.975rem;
+            color: var(--zinc-700);
+        }
+
+        /* Lists */
+        ol,
+        ul {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            font-size: 0.975rem;
+        }
+
+        li strong {
+            color: var(--zinc-900);
+        }
+
+        /* Callout Boxes */
+        .callout {
+            padding: 16px;
+            border-left: 4px solid var(--zinc-300);
+            background-color: var(--zinc-100);
+            border-radius: 0 6px 6px 0;
+            margin: 24px 0;
+            font-size: 0.925rem;
+        }
+
+        .callout-warning {
+            border-left-color: var(--warning-border);
+            background-color: var(--warning-light);
+            color: #92400e;
+        }
+
+        .callout-info {
+            border-left-color: var(--info-border);
+            background-color: var(--info-light);
+            color: #1e3a8a;
+        }
+
+        /* Tables */
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+
+        .doc-table th,
+        .doc-table td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--zinc-200);
+        }
+
+        .doc-table th {
+            background-color: var(--zinc-50);
+            color: var(--zinc-900);
+            font-weight: 600;
+        }
+
+        .doc-table tr:hover td {
+            background-color: var(--zinc-50);
+        }
+
+        /* Search input */
+        .search-container {
+            margin-bottom: 36px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px 10px 36px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            border: 1px solid var(--zinc-200);
+            border-radius: 6px;
+            outline: none;
+            color: var(--zinc-900);
+            background-color: var(--zinc-50);
+            transition: border-color 0.15s, background-color 0.15s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.08);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            color: var(--zinc-400);
+            pointer-events: none;
+        }
+
+        .search-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .no-results {
+            display: none;
+            padding: 24px;
+            text-align: center;
+            border: 1px dashed var(--zinc-200);
+            border-radius: 6px;
+            color: var(--zinc-500);
+            font-size: 0.95rem;
+            margin-top: 20px;
+        }
+
+        /* Footer */
         footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #6b7280;
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid var(--zinc-200);
+            font-size: 0.85rem;
+            color: var(--zinc-500);
         }
 
-        /* MOBILE */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-
+        /* Responsive Design */
+        @media (max-width: 900px) {
             .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                display: flex;
-                overflow-x: auto;
-                gap: 10px;
+                transform: translateX(-260px);
+                transition: transform 0.2s ease-in-out;
             }
 
-            .sidebar a {
-                white-space: nowrap;
+            .sidebar.active {
+                transform: translateX(0);
             }
 
-            .content {
+            .main-content {
                 margin-left: 0;
+                padding: 90px 24px 48px;
+            }
+
+            .mobile-header {
+                display: flex;
             }
         }
-
     </style>
 </head>
+
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h2>Kedai POS</h2>
-    <a href="#intro">Pendahuluan</a>
-    <a href="#login">Login</a>
-    <a href="#transaksi">Transaksi</a>
-    <a href="#produk">Kelola Produk</a>
-    <a href="#laporan">Laporan</a>
-</div>
-
-<!-- CONTENT -->
-<div class="content">
-
-    <header>
-        <h1>Manual Book Kedai POS</h1>
-        <p>Panduan penggunaan aplikasi mobile Kedai POS</p>
-    </header>
-
-    <section id="intro" class="section">
-        <h2>Pendahuluan</h2>
-        <div class="card">
-            <p>Kedai POS adalah aplikasi kasir mobile untuk membantu mengelola bisnis Anda secara efisien.</p>
+    <!-- MOBILE HEADER -->
+    <div class="mobile-header">
+        <div class="mobile-logo-area">
+            <svg class="sidebar-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            <h2>Kedai POS</h2>
         </div>
-    </section>
+        <button class="mobile-toggle" onclick="toggleSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
 
-    <section id="login" class="section">
-        <h2>Cara Login</h2>
-        <div class="card">
-            <ol>
-                <li>Buka aplikasi Kedai POS</li>
-                <li>Masukkan email dan password</li>
-                <li>Klik tombol Login</li>
-            </ol>
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <svg class="sidebar-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            <h2>Kedai POS</h2>
+        </div>
+        <div class="sidebar-nav">
+            <a href="#intro" class="active" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Pendahuluan
+            </a>
+            <a href="#dashboard" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+                </svg>
+                Dashboard Utama
+            </a>
+            <a href="#kasir" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                Transaksi Kasir
+            </a>
+            <a href="#produk" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                Kelola Produk
+            </a>
+            <a href="#piutang" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+                Buku Piutang
+            </a>
+            <a href="#pengeluaran" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Pengeluaran Toko
+            </a>
+            <a href="#pelanggan" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Kelola Pelanggan
+            </a>
+            <a href="#laporan" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Riwayat & Laporan
+            </a>
+            <a href="#printer" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Printer & Profil
+            </a>
+            <a href="#keamanan" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                PIN & Keamanan
+            </a>
+        </div>
+    </div>
 
-            <div class="note">
-                Gunakan koneksi internet stabil saat login.
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="doc-container">
+            <header>
+                <h1>Buku Panduan Kedai POS</h1>
+                <div class="subtitle">Panduan operasional lengkap dan konfigurasi aplikasi Kedai POS.</div>
+
+                <div class="search-container">
+                    <span class="search-icon">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari topik panduan...">
+                </div>
+            </header>
+
+            <div id="noResults" class="no-results">
+                Hasil pencarian tidak ditemukan. Coba kata kunci lain.
             </div>
+
+            <div id="sections-wrapper">
+                <!-- Pendahuluan -->
+                <section id="intro" class="doc-section">
+                    <h2>Pendahuluan</h2>
+                    <p>Kedai POS adalah aplikasi kasir (Point of Sale) berbasis mobile yang dirancang untuk mengelola
+                        inventaris, transaksi penjualan, catatan pengeluaran, serta piutang pelanggan pada skala usaha
+                        kecil dan menengah (UMKM).</p>
+                    <div class="callout callout-info">
+                        Aplikasi ini dapat digunakan secara luring (offline) untuk memproses transaksi kasir sehari-hari
+                        dan menyinkronkan data saat dibutuhkan.
+                    </div>
+                </section>
+
+                <!-- Dashboard Utama -->
+                <section id="dashboard" class="doc-section">
+                    <h2>Dashboard Utama</h2>
+                    <p>Dashboard utama (Beranda) adalah pusat kendali Kedai POS yang memberikan tinjauan cepat mengenai
+                        performa bisnis Anda secara real-time serta akses instan ke seluruh menu aplikasi.</p>
+
+                    <h3>Komponen Utama Dashboard:</h3>
+                    <ol>
+                        <li><strong>Ringkasan Statistik Harian:</strong>
+                            <ul>
+                                <li><strong>Omzet Hari Ini:</strong> Menampilkan total pendapatan kotor dari transaksi
+                                    penjualan hari ini. Ketuk kartu ini untuk langsung membuka riwayat transaksi hari
+                                    ini.</li>
+                                <li><strong>Jumlah Transaksi:</strong> Menampilkan total nota transaksi yang diterbitkan
+                                    hari ini.</li>
+                                <li><strong>Pengeluaran:</strong> Menampilkan total biaya operasional hari ini. Ketuk
+                                    kartu ini untuk menuju menu pengeluaran harian.</li>
+                                <li><strong>Produk Aktif:</strong> Menampilkan jumlah item barang yang aktif terdaftar
+                                    dalam sistem. Ketuk kartu ini untuk membuka katalog produk.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pemberitahuan (Notifikasi):</strong>
+                            <ul>
+                                <li>Terletak di sudut kanan atas bar aplikasi (ikon lonceng).</li>
+                                <li>Menampilkan peringatan penting, seperti pengingat pencadangan data (backup), status
+                                    jatuh tempo piutang pelanggan, dan batas stok produk yang menipis.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tren Penjualan (7 Hari Terakhir):</strong>
+                            <ul>
+                                <li>Grafik garis dinamis yang menggambarkan naik-turunnya omzet toko selama seminggu
+                                    terakhir untuk memudahkan analisis performa mingguan.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Daftar Produk Terlaris:</strong>
+                            <ul>
+                                <li>Menampilkan produk-produk dengan volume penjualan tertinggi untuk membantu Anda
+                                    mengetahui preferensi konsumen.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Akses Menu Cepat & Tombol Kasir (FAB):</strong>
+                            <ul>
+                                <li>6 ikon navigasi utama (Produk, Riwayat, Pelanggan, Buku Kas, Laporan, Piutang).</li>
+                                <li>Tombol bulat berlogo POS/kasir di bagian tengah bawah menu navigasi untuk langsung
+                                    memproses transaksi belanja konsumen.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- Transaksi Kasir -->
+                <section id="kasir" class="doc-section">
+                    <h2>Transaksi Kasir</h2>
+                    <p>Menu ini memproses transaksi pembelian barang oleh pelanggan secara langsung.</p>
+                    <h3>Alur Transaksi Kasir:</h3>
+                    <ol>
+                        <li>Buka menu <strong>Kasir</strong> di halaman beranda.</li>
+                        <li>Ketuk pada nama produk untuk memasukkannya ke dalam keranjang. Ketuk berulang kali untuk
+                            menambah jumlah kuantitas produk yang sama.</li>
+                        <li>Ketuk tombol <strong>Keranjang</strong> untuk meninjau kembali rincian produk yang dibeli.
+                        </li>
+                        <li>Ketuk <strong>Pilih Pelanggan</strong> (opsional) untuk menghubungkan pembelian dengan data
+                            kontak pelanggan yang terdaftar.</li>
+                        <li>Tentukan metode transaksi:
+                            <ul>
+                                <li><strong>Tunai:</strong> Masukkan jumlah nominal pembayaran tunai yang diterima dari
+                                    pembeli. Sistem akan menampilkan nominal kembalian jika uang yang diberikan
+                                    berlebih.</li>
+                                <li><strong>Bayar Nanti (Piutang):</strong> Opsi ini mewajibkan pemilihan nama pelanggan
+                                    untuk mencatat nilai belanjaan sebagai bon/piutang.</li>
+                            </ul>
+                        </li>
+                        <li>Tekan <strong>Bayar</strong> untuk menyelesaikan transaksi.</li>
+                        <li>Pilih <strong>Cetak Struk</strong> untuk mencetak salinan fisik nota transaksi menggunakan
+                            printer Bluetooth.</li>
+                    </ol>
+                </section>
+
+                <!-- Kelola Produk -->
+                <section id="produk" class="doc-section">
+                    <h2>Kelola Produk</h2>
+                    <p>Menu produk mendata seluruh inventaris barang yang dijual di toko Anda beserta dengan harga modal
+                        dan harga jualnya.</p>
+                    <h3>Cara Menambahkan Produk Baru:</h3>
+                    <ol>
+                        <li>Akses menu <strong>Produk</strong> pada halaman utama.</li>
+                        <li>Tekan tombol tambah (+) yang berada di pojok layar.</li>
+                        <li>Isi data formulir produk:
+                            <ul>
+                                <li><strong>Nama Produk:</strong> Nama barang belanjaan yang akan muncul di daftar
+                                    kasir.</li>
+                                <li><strong>Harga Modal (HPP):</strong> Nilai pokok pembelian produk. Data ini penting
+                                    untuk menghitung keuntungan bersih usaha.</li>
+                                <li><strong>Harga Jual:</strong> Harga yang dibebankan kepada konsumen akhir.</li>
+                                <li><strong>Stok Awal:</strong> Jumlah fisik produk saat diinput.</li>
+                                <li><strong>Batas Minimum Stok:</strong> Limit notifikasi peringatan jika stok produk
+                                    mulai habis.</li>
+                            </ul>
+                        </li>
+                        <li>Tekan <strong>Simpan</strong>.</li>
+                    </ol>
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Atribut Data</th>
+                                <th>Deskripsi Penggunaan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Harga Modal (HPP)</td>
+                                <td>Menghitung selisih keuntungan bersih (laba bersih) dari total nilai penjualan kotor.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Batas Minimum Stok</td>
+                                <td>Memberikan peringatan visual pada kasir saat persediaan barang menipis di bawah
+                                    limit tertentu.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Buku Piutang -->
+                <section id="piutang" class="doc-section">
+                    <h2>Buku Piutang</h2>
+                    <p>Buku piutang digunakan untuk memantau nilai kredit belanja (bon) pelanggan dan melacak cicilan
+                        pembayarannya.</p>
+                    <h3>Alur Pencatatan Piutang:</h3>
+                    <ol>
+                        <li>Saat berada di menu Kasir, pilih metode pembayaran <strong>Bayar Nanti</strong>.</li>
+                        <li>Pilih nama pelanggan terdaftar yang mengajukan bon pembayaran.</li>
+                        <li>Selesaikan transaksi. Total nilai belanjaan akan otomatis dicatat sebagai saldo hutang pada
+                            profil pelanggan tersebut di menu <strong>Buku Piutang</strong>.</li>
+                    </ol>
+                    <h3>Mencatat Cicilan & Pelunasan:</h3>
+                    <ol>
+                        <li>Buka menu <strong>Buku Piutang</strong> dari halaman utama.</li>
+                        <li>Cari dan pilih nama pelanggan yang ingin membayar tagihan.</li>
+                        <li>Tekan tombol <strong>Bayar Cicilan</strong> atau <strong>Lunasi</strong>.</li>
+                        <li>Masukkan nominal uang pembayaran yang disetorkan. Sisa saldo piutang pelanggan akan
+                            terpotong secara otomatis.</li>
+                        <li>Status transaksi otomatis berubah menjadi <strong>Lunas</strong> apabila saldo sisa piutang
+                            menyentuh angka nol (Rp 0).</li>
+                    </ol>
+                </section>
+
+                <!-- Pengeluaran Toko -->
+                <section id="pengeluaran" class="doc-section">
+                    <h2>Pengeluaran Toko</h2>
+                    <p>Digunakan untuk mencatat beban biaya operasional toko di luar pembelian stok barang dagang
+                        (misalnya: tagihan listrik harian, sewa tempat, atau gaji karyawan).</p>
+                    <h3>Mencatat Pengeluaran Baru:</h3>
+                    <ol>
+                        <li>Buka menu <strong>Pengeluaran</strong> pada halaman beranda utama.</li>
+                        <li>Tekan tombol <strong>+ Tambah Pengeluaran</strong>.</li>
+                        <li>Input nominal nominal uang pengeluaran.</li>
+                        <li>Pilih kategori pengeluaran dan tulis keterangan singkat pada kolom deskripsi (misal:
+                            "Pembelian token listrik bulanan").</li>
+                        <li>Tekan <strong>Simpan</strong>.</li>
+                    </ol>
+                    <div class="callout callout-info">
+                        Seluruh data pengeluaran yang diinput akan otomatis menjadi faktor pengurang pada perhitungan
+                        keuntungan bersih (laba bersih) pada menu laporan keuangan.
+                    </div>
+                </section>
+
+                <!-- Kelola Pelanggan -->
+                <section id="pelanggan" class="doc-section">
+                    <h2>Kelola Pelanggan</h2>
+                    <p>Penyimpanan profil kontak pelanggan tetap di dalam database guna mempercepat proses input data
+                        saat melakukan transaksi kasir piutang (bon).</p>
+                    <h3>Menambahkan Kontak Pelanggan:</h3>
+                    <ol>
+                        <li>Buka menu <strong>Pelanggan</strong> di dashboard utama.</li>
+                        <li>Pilih opsi tambah pelanggan baru (+).</li>
+                        <li>Isikan informasi <strong>Nama Pelanggan</strong> dan <strong>Nomor Telepon/WhatsApp</strong>
+                            yang aktif.</li>
+                        <li>Tekan <strong>Simpan</strong>.</li>
+                    </ol>
+                </section>
+
+                <!-- Riwayat & Laporan -->
+                <section id="laporan" class="doc-section">
+                    <h2>Riwayat & Laporan</h2>
+                    <p>Sistem merangkum data penjualan kotor, pengeluaran operasional, dan nilai laba bersih usaha
+                        secara otomatis.</p>
+                    <h3>Melihat Riwayat Penjualan:</h3>
+                    <ol>
+                        <li>Pilih menu <strong>Riwayat Transaksi</strong> di beranda utama.</li>
+                        <li>Di sini tertulis seluruh transaksi penjualan yang telah sukses diproses.</li>
+                        <li>Ketuk salah satu daftar penjualan untuk meninjau rincian barang, total diskon, dan metode
+                            pembayaran yang digunakan. Anda juga dapat melakukan cetak ulang struk dari menu ini.</li>
+                    </ol>
+                    <h3>Memahami Laporan Laba Rugi:</h3>
+                    <p>Perhitungan laba rugi dihitung menggunakan formula standar:</p>
+                    <p><code>Keuntungan Bersih = (Total Nilai Penjualan - Harga Pokok Penjualan/Modal) - Total Pengeluaran Operasional</code>
+                    </p>
+                    <p>Anda dapat memfilter data laporan berdasarkan periode hari ini, kemarin, minggu ini, atau bulan
+                        berjalan pada pilihan penanggalan yang berada di bagian atas laporan.</p>
+                </section>
+
+                <!-- Printer & Profil -->
+                <section id="printer" class="doc-section">
+                    <h2>Printer & Profil</h2>
+                    <p>Pengaturan bluetooth printer thermal untuk mencetak salinan struk bukti pembayaran serta
+                        konfigurasi data toko.</p>
+                    <h3>Menghubungkan Printer Bluetooth:</h3>
+                    <ol>
+                        <li>Nyalakan koneksi Bluetooth pada HP/Tablet Android Anda dan nyalakan mesin printer thermal.
+                        </li>
+                        <li>Buka menu Pengaturan pada aplikasi, pilih opsi <strong>Koneksi Printer Bluetooth</strong>.
+                        </li>
+                        <li>Tekan tombol <strong>Scan</strong> untuk memindai perangkat bluetooth di sekitar.</li>
+                        <li>Pilih nama printer thermal yang sesuai dari daftar perangkat yang terdeteksi (contoh:
+                            <i>MTP-II</i>, <i>RPP02N</i>).
+                        </li>
+                        <li>Tekan opsi <strong>Test Print</strong> untuk memverifikasi koneksi cetak struk percobaan.
+                        </li>
+                    </ol>
+                    <h3>Mengatur Identitas Toko pada Struk:</h3>
+                    <ol>
+                        <li>Pilih menu <strong>Identitas Toko / Profil Toko</strong> di dalam pengaturan.</li>
+                        <li>Tuliskan Nama Toko, Alamat Lengkap, dan Nomor Kontak. Data ini akan tercetak secara otomatis
+                            pada bagian paling atas (header) struk bukti pembayaran belanja pelanggan Anda.</li>
+                    </ol>
+                </section>
+
+                <!-- PIN & Keamanan -->
+                <section id="keamanan" class="doc-section">
+                    <h2>PIN & Keamanan</h2>
+                    <p>Keamanan aplikasi membatasi akses pada menu laporan keuangan, riwayat transaksi, serta
+                        pengelolaan stok produk dari perubahan oleh kasir atau pihak yang tidak berwenang.</p>
+                    <h3>Mengaktifkan Kunci PIN:</h3>
+                    <ol>
+                        <li>Buka menu <strong>Pengaturan</strong> pada halaman beranda utama.</li>
+                        <li>Pilih opsi <strong>Keamanan PIN</strong>.</li>
+                        <li>Buat kombinasi 4 digit angka PIN baru yang ingin digunakan.</li>
+                        <li>Aktifkan toggle <strong>Kunci Aplikasi</strong> untuk menerapkan verifikasi PIN setiap
+                            aplikasi dinyalakan.</li>
+                    </ol>
+                    <div class="callout callout-warning">
+                        <strong>Peringatan:</strong> Jika Anda lupa PIN keamanan, akses ke pengaturan sensitif akan
+                        terblokir. Anda harus mereset data aplikasi lewat menu pengaturan internal OS Android untuk
+                        memulihkannya.
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                <p>&copy; 2026 Kedai POS. Nawari Studio.</p>
+            </footer>
         </div>
-    </section>
+    </div>
 
-    <section id="transaksi" class="section">
-        <h2>Melakukan Transaksi</h2>
-        <div class="card">
-            <ol>
-                <li>Pilih menu Kasir</li>
-                <li>Pilih produk</li>
-                <li>Masukkan jumlah</li>
-                <li>Klik Bayar</li>
-            </ol>
-        </div>
-    </section>
+    <script>
+        // Scroll navigation active highlighters
+        const links = document.querySelectorAll('.sidebar-nav a');
+        const sections = document.querySelectorAll('.doc-section');
 
-    <section id="produk" class="section">
-        <h2>Kelola Produk</h2>
-        <div class="card">
-            <ul>
-                <li>Tambah produk</li>
-                <li>Edit produk</li>
-                <li>Hapus produk</li>
-            </ul>
-        </div>
-    </section>
+        function changeLinkState() {
+            let index = sections.length;
+            while (--index && window.scrollY + 100 < sections[index].offsetTop) { }
+            links.forEach((link) => link.classList.remove('active'));
+            links[index].classList.add('active');
+        }
 
-    <section id="laporan" class="section">
-        <h2>Laporan</h2>
-        <div class="card">
-            <p>Lihat laporan harian, mingguan, dan bulanan di menu laporan.</p>
-        </div>
-    </section>
+        window.addEventListener('scroll', changeLinkState);
+        changeLinkState();
 
-    <footer>
-        <p>© 2026 Kedai POS</p>
-    </footer>
+        // Mobile sidebar toggler
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
 
-</div>
+        function closeSidebarMobile() {
+            if (window.innerWidth <= 900) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        }
 
+        // Filter / search content
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', function (e) {
+            const query = e.target.value.toLowerCase().trim();
+            let matches = 0;
+
+            sections.forEach(section => {
+                const text = section.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    section.style.display = 'block';
+                    matches++;
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            if (matches === 0 && query !== '') {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        });
+    </script>
 </body>
+
 </html>

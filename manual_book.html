@@ -355,6 +355,207 @@
                 display: flex;
             }
         }
+
+        /* YouTube Embed and Video Button Styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin: 20px 0 28px 0;
+            border: 1px solid var(--zinc-200);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 12px;
+        }
+
+        .video-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            color: #ef4444;
+            /* YouTube Red color */
+            border: 1px solid #fee2e2;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-size: 0.925rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(239, 68, 68, 0.05);
+            margin-top: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        .video-tutorial-btn:hover {
+            background-color: #fef2f2;
+            border-color: #fca5a5;
+            color: #dc2626;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.1);
+        }
+
+        .video-tutorial-btn svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        /* Modern UI Button/Badge Styles */
+        .btn-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--zinc-100);
+            border: 1px solid var(--zinc-300);
+            color: var(--zinc-800);
+            padding: 2px 8px;
+            font-size: 0.825rem;
+            font-weight: 600;
+            border-radius: 4px;
+            margin: 0 3px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            font-family: var(--font-mono, monospace);
+        }
+
+        .btn-badge-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff !important;
+        }
+
+        .btn-badge-success {
+            background-color: #10b981;
+            border-color: #059669;
+            color: #ffffff !important;
+        }
+
+        .btn-badge-danger {
+            background-color: #ef4444;
+            border-color: #dc2626;
+            color: #ffffff !important;
+        }
+
+        .btn-badge-warning {
+            background-color: #f59e0b;
+            border-color: #d97706;
+            color: #ffffff !important;
+        }
+
+        /* Modern Stepper List Style */
+        .stepper {
+            list-style: none;
+            padding-left: 0;
+            position: relative;
+        }
+
+        .stepper>li {
+            position: relative;
+            padding-left: 42px;
+            margin-bottom: 24px;
+        }
+
+        /* Stepper Numbers */
+        .stepper>li::before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1.5px solid var(--primary);
+            z-index: 2;
+        }
+
+        /* Stepper Line */
+        .stepper::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 10px;
+            bottom: 20px;
+            width: 2px;
+            background-color: var(--zinc-200);
+            z-index: 1;
+        }
+
+        .stepper {
+            counter-reset: step-counter;
+        }
+
+        /* FAQ Component Style */
+        .faq-list {
+            margin-top: 24px;
+        }
+
+        .faq-item {
+            background-color: #ffffff;
+            border: 1px solid var(--zinc-200);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            padding: 16px;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--zinc-300);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .faq-question {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--zinc-900);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-question::before {
+            content: "Q";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background-color: #fee2e2;
+            color: #ef4444;
+            font-weight: 800;
+            font-size: 0.75rem;
+            border-radius: 4px;
+        }
+
+        .faq-answer {
+            font-size: 0.95rem;
+            color: var(--zinc-600);
+            line-height: 1.5;
+            padding-left: 28px;
+        }
     </style>
 </head>
 
@@ -459,6 +660,13 @@
                 </svg>
                 Printer & Profil
             </a>
+            <a href="#backup" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                </svg>
+                Backup & Restore
+            </a>
             <a href="#keamanan" onclick="closeSidebarMobile()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -466,6 +674,14 @@
                 </svg>
                 PIN & Keamanan
             </a>
+            <a href="#faq" onclick="closeSidebarMobile()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Tanya Jawab (FAQ)
+            </a>
+
         </div>
     </div>
 
@@ -498,6 +714,23 @@
                     <p>Kedai POS adalah aplikasi kasir (Point of Sale) berbasis mobile yang dirancang untuk mengelola
                         inventaris, transaksi penjualan, catatan pengeluaran, serta piutang pelanggan pada skala usaha
                         kecil dan menengah (UMKM).</p>
+
+                    <a href="https://www.youtube.com" target="_blank" class="video-tutorial-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                        Tonton Video Panduan Lengkap di YouTube
+                    </a>
+
+                    <div class="video-container">
+                        <!-- Silakan ganti KODE_YOUTUBE dengan ID video YouTube Anda (contoh: dQw4w9WgXcQ) -->
+                        <iframe src="https://www.youtube.com/embed/KODE_YOUTUBE"
+                            title="Panduan Lengkap Penggunaan Kedai POS"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+
                     <div class="callout callout-info">
                         Aplikasi ini dapat digunakan secara luring (offline) untuk memproses transaksi kasir sehari-hari
                         dan menyinkronkan data saat dibutuhkan.
@@ -528,8 +761,9 @@
                         <li><strong>Pemberitahuan (Notifikasi):</strong>
                             <ul>
                                 <li>Terletak di sudut kanan atas bar aplikasi (ikon lonceng).</li>
-                                <li>Menampilkan peringatan penting, seperti pengingat pencadangan data (backup), status
-                                    jatuh tempo piutang pelanggan, dan batas stok produk yang menipis.</li>
+                                <li>Menampilkan peringatan penting, seperti pengingat pencadangan data (backup) dan
+                                    status
+                                    jatuh tempo piutang pelanggan.</li>
                             </ul>
                         </li>
                         <li><strong>Tren Penjualan (7 Hari Terakhir):</strong>
@@ -559,14 +793,15 @@
                     <h2>Transaksi Kasir</h2>
                     <p>Menu ini memproses transaksi pembelian barang oleh pelanggan secara langsung.</p>
                     <h3>Alur Transaksi Kasir:</h3>
-                    <ol>
-                        <li>Buka menu <strong>Kasir</strong> di halaman beranda.</li>
+                    <ol class="stepper">
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Kasir</span> di halaman beranda (atau
+                            ketuk tombol bulat berlogo kasir di bagian bawah).</li>
                         <li>Ketuk pada nama produk untuk memasukkannya ke dalam keranjang. Ketuk berulang kali untuk
                             menambah jumlah kuantitas produk yang sama.</li>
-                        <li>Ketuk tombol <strong>Keranjang</strong> untuk meninjau kembali rincian produk yang dibeli.
-                        </li>
-                        <li>Ketuk <strong>Pilih Pelanggan</strong> (opsional) untuk menghubungkan pembelian dengan data
-                            kontak pelanggan yang terdaftar.</li>
+                        <li>Ketuk tombol <span class="btn-badge">Keranjang</span> di bawah untuk meninjau kembali
+                            rincian produk yang dibeli.</li>
+                        <li>Ketuk <span class="btn-badge">Pilih Pelanggan</span> (opsional) untuk menghubungkan
+                            pembelian dengan data kontak pelanggan yang terdaftar.</li>
                         <li>Tentukan metode transaksi:
                             <ul>
                                 <li><strong>Tunai:</strong> Masukkan jumlah nominal pembayaran tunai yang diterima dari
@@ -576,55 +811,33 @@
                                     untuk mencatat nilai belanjaan sebagai bon/piutang.</li>
                             </ul>
                         </li>
-                        <li>Tekan <strong>Bayar</strong> untuk menyelesaikan transaksi.</li>
-                        <li>Pilih <strong>Cetak Struk</strong> untuk mencetak salinan fisik nota transaksi menggunakan
-                            printer Bluetooth.</li>
+                        <li>Tekan tombol <span class="btn-badge btn-badge-success">Bayar</span> untuk menyelesaikan
+                            transaksi.</li>
+                        <li>Pilih <span class="btn-badge btn-badge-primary">Cetak Struk</span> untuk mencetak salinan
+                            fisik nota transaksi menggunakan printer Bluetooth.</li>
                     </ol>
                 </section>
 
                 <!-- Kelola Produk -->
                 <section id="produk" class="doc-section">
                     <h2>Kelola Produk</h2>
-                    <p>Menu produk mendata seluruh inventaris barang yang dijual di toko Anda beserta dengan harga modal
-                        dan harga jualnya.</p>
+                    <p>Menu produk mendata seluruh inventaris barang yang dijual di toko Anda beserta dengan harga
+                        jualnya.</p>
                     <h3>Cara Menambahkan Produk Baru:</h3>
-                    <ol>
-                        <li>Akses menu <strong>Produk</strong> pada halaman utama.</li>
-                        <li>Tekan tombol tambah (+) yang berada di pojok layar.</li>
+                    <ol class="stepper">
+                        <li>Akses menu <span class="btn-badge btn-badge-primary">Produk</span> pada halaman utama.</li>
+                        <li>Tekan tombol tambah <span class="btn-badge btn-badge-primary">+</span> yang berada di pojok
+                            kanan layar.</li>
                         <li>Isi data formulir produk:
                             <ul>
                                 <li><strong>Nama Produk:</strong> Nama barang belanjaan yang akan muncul di daftar
                                     kasir.</li>
-                                <li><strong>Harga Modal (HPP):</strong> Nilai pokok pembelian produk. Data ini penting
-                                    untuk menghitung keuntungan bersih usaha.</li>
                                 <li><strong>Harga Jual:</strong> Harga yang dibebankan kepada konsumen akhir.</li>
-                                <li><strong>Stok Awal:</strong> Jumlah fisik produk saat diinput.</li>
-                                <li><strong>Batas Minimum Stok:</strong> Limit notifikasi peringatan jika stok produk
-                                    mulai habis.</li>
                             </ul>
                         </li>
-                        <li>Tekan <strong>Simpan</strong>.</li>
+                        <li>Tekan tombol <span class="btn-badge btn-badge-success">Simpan</span> di pojok kanan atas
+                            untuk menyimpan data produk baru.</li>
                     </ol>
-                    <table class="doc-table">
-                        <thead>
-                            <tr>
-                                <th>Atribut Data</th>
-                                <th>Deskripsi Penggunaan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Harga Modal (HPP)</td>
-                                <td>Menghitung selisih keuntungan bersih (laba bersih) dari total nilai penjualan kotor.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Batas Minimum Stok</td>
-                                <td>Memberikan peringatan visual pada kasir saat persediaan barang menipis di bawah
-                                    limit tertentu.</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </section>
 
                 <!-- Buku Piutang -->
@@ -633,17 +846,21 @@
                     <p>Buku piutang digunakan untuk memantau nilai kredit belanja (bon) pelanggan dan melacak cicilan
                         pembayarannya.</p>
                     <h3>Alur Pencatatan Piutang:</h3>
-                    <ol>
-                        <li>Saat berada di menu Kasir, pilih metode pembayaran <strong>Bayar Nanti</strong>.</li>
+                    <ol class="stepper">
+                        <li>Saat berada di menu Kasir, pilih metode pembayaran <span
+                                class="btn-badge btn-badge-warning">Bayar Nanti</span>.</li>
                         <li>Pilih nama pelanggan terdaftar yang mengajukan bon pembayaran.</li>
                         <li>Selesaikan transaksi. Total nilai belanjaan akan otomatis dicatat sebagai saldo hutang pada
-                            profil pelanggan tersebut di menu <strong>Buku Piutang</strong>.</li>
+                            profil pelanggan tersebut di menu <span class="btn-badge btn-badge-primary">Buku
+                                Piutang</span>.</li>
                     </ol>
                     <h3>Mencatat Cicilan & Pelunasan:</h3>
-                    <ol>
-                        <li>Buka menu <strong>Buku Piutang</strong> dari halaman utama.</li>
+                    <ol class="stepper">
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Buku Piutang</span> dari halaman utama.
+                        </li>
                         <li>Cari dan pilih nama pelanggan yang ingin membayar tagihan.</li>
-                        <li>Tekan tombol <strong>Bayar Cicilan</strong> atau <strong>Lunasi</strong>.</li>
+                        <li>Tekan tombol <span class="btn-badge btn-badge-success">Bayar Cicilan</span> atau <span
+                                class="btn-badge btn-badge-success">Lunasi</span>.</li>
                         <li>Masukkan nominal uang pembayaran yang disetorkan. Sisa saldo piutang pelanggan akan
                             terpotong secara otomatis.</li>
                         <li>Status transaksi otomatis berubah menjadi <strong>Lunas</strong> apabila saldo sisa piutang
@@ -654,16 +871,19 @@
                 <!-- Pengeluaran Toko -->
                 <section id="pengeluaran" class="doc-section">
                     <h2>Pengeluaran Toko</h2>
-                    <p>Digunakan untuk mencatat beban biaya operasional toko di luar pembelian stok barang dagang
-                        (misalnya: tagihan listrik harian, sewa tempat, atau gaji karyawan).</p>
+                    <p>Digunakan untuk mencatat beban biaya operasional toko di luar pembelian barang dagang (misalnya:
+                        tagihan listrik harian, sewa tempat, atau gaji karyawan).</p>
                     <h3>Mencatat Pengeluaran Baru:</h3>
-                    <ol>
-                        <li>Buka menu <strong>Pengeluaran</strong> pada halaman beranda utama.</li>
-                        <li>Tekan tombol <strong>+ Tambah Pengeluaran</strong>.</li>
+                    <ol class="stepper">
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Pengeluaran</span> pada halaman beranda
+                            utama.</li>
+                        <li>Tekan tombol <span class="btn-badge btn-badge-primary">+ Tambah Pengeluaran</span> yang
+                            berada di bawah.</li>
                         <li>Input nominal nominal uang pengeluaran.</li>
                         <li>Pilih kategori pengeluaran dan tulis keterangan singkat pada kolom deskripsi (misal:
                             "Pembelian token listrik bulanan").</li>
-                        <li>Tekan <strong>Simpan</strong>.</li>
+                        <li>Tekan tombol <span class="btn-badge btn-badge-success">Simpan</span> untuk menyimpan catatan
+                            pengeluaran.</li>
                     </ol>
                     <div class="callout callout-info">
                         Seluruh data pengeluaran yang diinput akan otomatis menjadi faktor pengurang pada perhitungan
@@ -677,12 +897,14 @@
                     <p>Penyimpanan profil kontak pelanggan tetap di dalam database guna mempercepat proses input data
                         saat melakukan transaksi kasir piutang (bon).</p>
                     <h3>Menambahkan Kontak Pelanggan:</h3>
-                    <ol>
-                        <li>Buka menu <strong>Pelanggan</strong> di dashboard utama.</li>
-                        <li>Pilih opsi tambah pelanggan baru (+).</li>
+                    <ol class="stepper">
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Pelanggan</span> di dashboard utama.
+                        </li>
+                        <li>Pilih opsi tambah pelanggan baru <span class="btn-badge btn-badge-primary">+</span> di pojok
+                            kanan layar.</li>
                         <li>Isikan informasi <strong>Nama Pelanggan</strong> dan <strong>Nomor Telepon/WhatsApp</strong>
                             yang aktif.</li>
-                        <li>Tekan <strong>Simpan</strong>.</li>
+                        <li>Tekan tombol <span class="btn-badge btn-badge-success">Simpan</span> untuk menyimpan.</li>
                     </ol>
                 </section>
 
@@ -692,15 +914,17 @@
                     <p>Sistem merangkum data penjualan kotor, pengeluaran operasional, dan nilai laba bersih usaha
                         secara otomatis.</p>
                     <h3>Melihat Riwayat Penjualan:</h3>
-                    <ol>
-                        <li>Pilih menu <strong>Riwayat Transaksi</strong> di beranda utama.</li>
+                    <ol class="stepper">
+                        <li>Pilih menu <span class="btn-badge btn-badge-primary">Riwayat Transaksi</span> di beranda
+                            utama.</li>
                         <li>Di sini tertulis seluruh transaksi penjualan yang telah sukses diproses.</li>
                         <li>Ketuk salah satu daftar penjualan untuk meninjau rincian barang, total diskon, dan metode
-                            pembayaran yang digunakan. Anda juga dapat melakukan cetak ulang struk dari menu ini.</li>
+                            pembayaran yang digunakan. Anda juga dapat melakukan cetak ulang struk dari menu ini dengan
+                            mengetuk tombol <span class="btn-badge btn-badge-primary">Cetak Struk</span>.</li>
                     </ol>
                     <h3>Memahami Laporan Laba Rugi:</h3>
                     <p>Perhitungan laba rugi dihitung menggunakan formula standar:</p>
-                    <p><code>Keuntungan Bersih = (Total Nilai Penjualan - Harga Pokok Penjualan/Modal) - Total Pengeluaran Operasional</code>
+                    <p><code>Keuntungan Bersih = Total Nilai Penjualan - Total Pengeluaran Operasional</code>
                     </p>
                     <p>Anda dapat memfilter data laporan berdasarkan periode hari ini, kemarin, minggu ini, atau bulan
                         berjalan pada pilihan penanggalan yang berada di bagian atas laporan.</p>
@@ -712,34 +936,111 @@
                     <p>Pengaturan bluetooth printer thermal untuk mencetak salinan struk bukti pembayaran serta
                         konfigurasi data toko.</p>
                     <h3>Menghubungkan Printer Bluetooth:</h3>
-                    <ol>
+                    <ol class="stepper">
                         <li>Nyalakan koneksi Bluetooth pada HP/Tablet Android Anda dan nyalakan mesin printer thermal.
                         </li>
-                        <li>Buka menu Pengaturan pada aplikasi, pilih opsi <strong>Koneksi Printer Bluetooth</strong>.
-                        </li>
-                        <li>Tekan tombol <strong>Scan</strong> untuk memindai perangkat bluetooth di sekitar.</li>
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Pengaturan</span> pada aplikasi, pilih
+                            opsi <strong>Koneksi Printer Bluetooth</strong>.</li>
+                        <li>Tekan tombol <span class="btn-badge btn-badge-primary">Scan</span> untuk memindai perangkat
+                            bluetooth di sekitar.</li>
                         <li>Pilih nama printer thermal yang sesuai dari daftar perangkat yang terdeteksi (contoh:
                             <i>MTP-II</i>, <i>RPP02N</i>).
                         </li>
-                        <li>Tekan opsi <strong>Test Print</strong> untuk memverifikasi koneksi cetak struk percobaan.
-                        </li>
+                        <li>Tekan opsi <span class="btn-badge btn-badge-success">Test Print</span> untuk memverifikasi
+                            koneksi cetak struk percobaan.</li>
                     </ol>
                     <h3>Mengatur Identitas Toko pada Struk:</h3>
-                    <ol>
+                    <ol class="stepper">
                         <li>Pilih menu <strong>Identitas Toko / Profil Toko</strong> di dalam pengaturan.</li>
                         <li>Tuliskan Nama Toko, Alamat Lengkap, dan Nomor Kontak. Data ini akan tercetak secara otomatis
                             pada bagian paling atas (header) struk bukti pembayaran belanja pelanggan Anda.</li>
                     </ol>
+
+                    <h3>Mengaktifkan Pengingat Backup Data:</h3>
+                    <ol class="stepper">
+                        <li>Di halaman pengaturan, cari kartu menu <strong>Pengingat & Backup</strong>.</li>
+                        <li>Aktifkan toggle <strong>Ingatkan Backup Data</strong> untuk memunculkan notifikasi berkala
+                            secara otomatis.</li>
+                        <li>Pilih interval pengingat yang diinginkan (setiap <strong>1 Hari, 3 Hari, 7 Hari, atau 30
+                                Hari</strong>) sesuai kebutuhan operasional usaha Anda.</li>
+                    </ol>
+
+                    <h3>Kustomisasi Tampilan Struk:</h3>
+                    <ol class="stepper">
+                        <li>Masuk ke kartu menu <strong>Kustomisasi Struk</strong> di halaman pengaturan.</li>
+                        <li>Ketuk kotak <strong>Logo Struk</strong> untuk mengunggah gambar logo toko Anda dari galeri
+                            perangkat.</li>
+                        <li>Isi kolom <strong>Teks Penutup Struk</strong> untuk memberikan pesan penutup khusus di
+                            bagian bawah struk (contoh: <i>"Barang yang sudah dibeli tidak dapat ditukar"</i> atau
+                            <i>"Terima kasih atas kunjungan Anda!"</i>).
+                        </li>
+                        <li>Ketuk tombol <span class="btn-badge btn-badge-primary">Preview Tampilan Struk</span> untuk
+                            melihat simulasi hasil struk belanja sebelum dicetak ke printer fisik.</li>
+                    </ol>
+
+                    <h3>Konfigurasi Printer Cetak Label:</h3>
+                    <ol class="stepper">
+                        <li>Pada bagian <strong>Printer Label</strong>, ketuk kolom Bluetooth Label untuk memindai dan
+                            memilih perangkat bluetooth printer label Anda.</li>
+                        <li>Tentukan ukuran kertas label Anda dengan mengisi nilai <strong>Lebar (mm)</strong> dan
+                            <strong>Tinggi (mm)</strong>.
+                        </li>
+                        <li>Atur posisi pencetakan pada menu dropdown <strong>Penyelarasan Label</strong> (Kiri, Tengah,
+                            atau Kanan).</li>
+                        <li>Gunakan tombol <span class="btn-badge btn-badge-success">Test Print Label</span> untuk
+                            menguji ketepatan posisi cetak pada kertas label Anda.</li>
+                    </ol>
+                </section>
+
+                <!-- Backup & Restore -->
+                <section id="backup" class="doc-section">
+                    <h2>Backup & Restore Database</h2>
+                    <p>Fitur ini digunakan untuk mengamankan data transaksi, pengeluaran, pelanggan, dan produk Anda
+                        dengan cara mengekspornya menjadi file cadangan (backup), atau memulihkannya kembali (restore)
+                        jika Anda mengganti perangkat.</p>
+
+                    <h3>Cara Backup Database (Ekspor Data):</h3>
+                    <ol class="stepper">
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Profil</span> pada navigasi bawah
+                            halaman utama.</li>
+                        <li>Pada bagian <strong>Data & Sinkronisasi</strong>, ketuk opsi <strong>Backup
+                                Database</strong>.</li>
+                        <li>Konfirmasi pencadangan dengan mengetuk tombol <span
+                                class="btn-badge btn-badge-success">Backup Sekarang</span> pada kotak dialog yang
+                            muncul.</li>
+                        <li>Tentukan direktori penyimpanan file di perangkat Anda dan simpan. File cadangan akan
+                            tersimpan dalam format terenkripsi yang aman.</li>
+                    </ol>
+
+                    <h3>Cara Restore Database (Impor Data):</h3>
+                    <ol class="stepper">
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Profil</span> pada navigasi bawah
+                            halaman utama.</li>
+                        <li>Ketuk opsi <strong>Restore Database</strong> pada bagian <strong>Data &
+                                Sinkronisasi</strong>.</li>
+                        <li>Pilih file cadangan (*backup file*) dari penyimpanan internal HP/Tablet Anda yang telah
+                            dibuat sebelumnya.</li>
+                        <li>Sistem akan memverifikasi file tersebut. Setelah itu, ketuk tombol <span
+                                class="btn-badge btn-badge-success">Restore Sekarang</span> untuk memulai proses
+                            pemulihan data.</li>
+                    </ol>
+                    <div class="callout callout-warning">
+                        <strong>Peringatan:</strong> Proses Restore akan menimpa dan menghapus seluruh data yang ada di
+                        aplikasi saat ini dengan data dari file cadangan tersebut. Pastikan Anda telah mencadangkan data
+                        penting terlebih dahulu sebelum melakukan Restore. Setelah restore berhasil, harap muat
+                        ulang/restart aplikasi Anda.
+                    </div>
                 </section>
 
                 <!-- PIN & Keamanan -->
                 <section id="keamanan" class="doc-section">
                     <h2>PIN & Keamanan</h2>
                     <p>Keamanan aplikasi membatasi akses pada menu laporan keuangan, riwayat transaksi, serta
-                        pengelolaan stok produk dari perubahan oleh kasir atau pihak yang tidak berwenang.</p>
+                        pengelolaan produk dari perubahan oleh kasir atau pihak yang tidak berwenang.</p>
                     <h3>Mengaktifkan Kunci PIN:</h3>
-                    <ol>
-                        <li>Buka menu <strong>Pengaturan</strong> pada halaman beranda utama.</li>
+                    <ol class="stepper">
+                        <li>Buka menu <span class="btn-badge btn-badge-primary">Pengaturan</span> pada halaman beranda
+                            utama.</li>
                         <li>Pilih opsi <strong>Keamanan PIN</strong>.</li>
                         <li>Buat kombinasi 4 digit angka PIN baru yang ingin digunakan.</li>
                         <li>Aktifkan toggle <strong>Kunci Aplikasi</strong> untuk menerapkan verifikasi PIN setiap
@@ -751,6 +1052,74 @@
                         memulihkannya.
                     </div>
                 </section>
+
+                <!-- Tanya Jawab (FAQ) -->
+                <section id="faq" class="doc-section">
+                    <h2>Tanya Jawab (FAQ)</h2>
+                    <p>Temukan solusi cepat dari beberapa pertanyaan dan kendala umum yang sering dihadapi pengguna
+                        Kedai POS.</p>
+
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">Mengapa printer Bluetooth saya tidak terdeteksi saat memindai?
+                            </div>
+                            <div class="faq-answer">
+                                Pastikan printer thermal Anda sudah menyala dan Bluetooth perangkat HP/Tablet Anda
+                                aktif. Anda harus <strong>melakukan pairing/pasangkan perangkat bluetooth baru</strong>
+                                terlebih dahulu melalui menu Pengaturan Bluetooth bawaan sistem HP/Tablet Anda sebelum
+                                namanya muncul di aplikasi Kedai POS.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">Bagaimana cara mencatat transaksi hutang / bon belanja pelanggan?
+                            </div>
+                            <div class="faq-answer">
+                                Pastikan Anda telah menambahkan data pelanggan tersebut di menu <strong>Kelola
+                                    Pelanggan</strong> terlebih dahulu. Setelah itu, pada menu kasir, pilih pelanggan
+                                tersebut lalu pilih metode pembayaran <span class="btn-badge btn-badge-warning">Bayar
+                                    Nanti</span>. Selesaikan transaksi seperti biasa agar saldo piutang tercatat di Buku
+                                Piutang.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">Di mana file backup database disimpan dan bagaimana
+                                memindahkannya?</div>
+                            <div class="faq-answer">
+                                File cadangan disimpan di penyimpanan internal perangkat Anda pada folder download atau
+                                folder yang Anda pilih saat mencadangkan. Anda dapat mengirim file cadangan terenkripsi
+                                ini lewat WhatsApp, Google Drive, atau Email ke HP baru Anda untuk kemudian dipulihkan
+                                menggunakan opsi <strong>Restore Database</strong>.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">Mengapa nilai keuntungan bersih saya tidak sama dengan sisa uang
+                                di laci kasir?</div>
+                            <div class="faq-answer">
+                                Nilai Keuntungan Bersih pada laporan finansial adalah total penjualan bersih dikurangi
+                                dengan pengeluaran operasional toko yang Anda catat secara tertib pada menu
+                                <strong>Pengeluaran Toko</strong>. Jika Anda mengambil uang laci untuk operasional di
+                                luar pencatatan, atau ada selisih piutang yang belum terbayar, sisa uang laci fisik akan
+                                berbeda dengan laporan keuangan.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">Bagaimana jika saya lupa kombinasi PIN Keamanan aplikasi?</div>
+                            <div class="faq-answer">
+                                Demi keamanan data sensitif Anda, sistem mengenkripsi PIN secara lokal. Jika Anda lupa
+                                PIN, Anda harus menghapus data aplikasi secara manual lewat pengaturan sistem operasi
+                                Android (<i>Settings > Apps > Kedai POS > Clear Data</i>). <strong>Catatan:</strong>
+                                Langkah ini akan menghapus database Anda, silakan pulihkan kembali data Anda menggunakan
+                                file backup database terakhir Anda setelahnya.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
             </div>
 
             <footer>

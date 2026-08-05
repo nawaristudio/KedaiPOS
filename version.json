@@ -1,5 +1,5 @@
 {
-  "version": "1.3.1",
-  "build_number": 13,
-  "changelog": "Kedai POS v1.3.1 - Update : Desain UI Baru, Edit Pembayaran Piutang, Optimasi Export, Layout Dashboard Baru, Peningkatan Performa."
+  "version": "1.4.0",
+  "build_number": 15,
+  "changelog": "Pembaruan Kedai POS v1.4.0 : Cloud Backup & Restore Google Drive, Auto-Sync Harian, Optimalisasi sistem & perbaikan bug minor."
 }

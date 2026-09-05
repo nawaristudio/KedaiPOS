@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
-  "build_number": 15,
-  "changelog": "Pembaruan Kedai POS v1.4.0 : Cloud Backup & Restore Google Drive, Auto-Sync Harian, Optimalisasi sistem & perbaikan bug minor."
+  "version": "1.5.0",
+  "build_number": 16,
+  "changelog": "Pembaruan fitur Kalkulator HPP"
 }
